@@ -9,8 +9,7 @@ import Footer from './components/Footer'
 function App() {
   const greeting = import.meta.env.VITE_GREETING
   const [count, setCount] = useState(0)
-
-  const [ipAddress, setIpAdress] = useState("")
+  const [ipAddress, setIpAdress] = useState("") // use this state variable
 
   useEffect(()=>{
     const fetchIpAddress = async() => {
@@ -18,10 +17,10 @@ function App() {
       const apiURL = import.meta.env.VITE_API_URL
 
       try{
-        const response = await fetch('${apiURL}?format=json');
+        const response = await fetch(`${apiURL}?format=json`);
 
         if (!response.ok){
-          throw new ERROR('API Error: ${response.status}')
+          throw new Error(`API Error: ${response.status}`)
         }
 
         const data = await response.json();
