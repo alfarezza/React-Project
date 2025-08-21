@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
+import ReactLogo from './assets/react.svg?react'
 import viteLogo from '/vite.svg'
 import scrimbaLogo from './assets/scrimba.png'
 import './App.css'
@@ -42,7 +42,7 @@ function App() {
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <ReactLogo className="logo react"/>
         </a>
         <a href="https://scrimba.com" target="_blank">
           <img src={scrimbaLogo} className="logo react" alt="Scrimba logo" />
