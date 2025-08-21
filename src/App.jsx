@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import scrimbaLogo from './assets/scrimba.png'
@@ -9,6 +9,31 @@ import Footer from './components/Footer'
 function App() {
   const greeting = import.meta.env.VITE_GREETING
   const [count, setCount] = useState(0)
+
+  const [ipAddress, setIpAdress] = useState("")
+
+  useEffect(()=>{
+    const fetchIpAddress = async() => {
+      // use enviroment variable
+      const apiURL = import.meta.env.VITE_API_URL
+
+      try{
+        const response = await fetch('${apiURL}?format=json');
+
+        if (!response.ok){
+          throw new ERROR('API Error: ${response.status}')
+        }
+
+        const data = await response.json();
+        setIpAdress(data.ip);
+      }catch (err){
+        setIpAdress("NOT AVAILABLE!");
+        console.log(err.message);
+      };
+    }
+
+    fetchIpAddress();
+    }, [])
 
   return (
     <>
@@ -26,6 +51,7 @@ function App() {
       </div>
       <h1>Vite + React + Scrimba</h1>
       <h2>{greeting}</h2>
+      <h3>Your IP Address is {ipAddress}</h3>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
